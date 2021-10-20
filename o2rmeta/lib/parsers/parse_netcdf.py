@@ -16,7 +16,7 @@
 """
 __all__ = ['ParseNetcdf']
 
-from helpers.helpers import *
+from ..helpers_funct import helpers
 
 import netCDF4
 

@@ -1,2 +1,5 @@
+
+pytest>=5
+pytest-console-scripts
 fiona
 rpy2

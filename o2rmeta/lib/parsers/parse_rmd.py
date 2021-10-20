@@ -21,7 +21,8 @@ import os
 import re
 import datetime
 from guess_language import guess_language
-from helpers.helpers import *
+from ..helpers_funct import helpers as help
+from .parse_yaml import ParseYaml
 
 ID = 'o2r meta rmd parser'
 FORMATS = ['.rmd', '.r']
@@ -89,7 +90,7 @@ class ParseRmd:
                             s = re.search(this_rule[1], content, flags=re.DOTALL)
                             if s:
                                 if this_rule[0].startswith('yaml'):
-                                    from parsers.parse_yaml import ParseYaml
+                                    from .parse_yaml import ParseYaml
                                     parsed = ParseYaml().internal_parse(s.group(1), MASTER_MD_DICT, stay_offline, is_debug)
                                     if parsed == 'error':
                                         return parsed
@@ -101,17 +102,17 @@ class ParseRmd:
                         # parse entire file as one code block
                         data_dict.update(r_codeblock=parse_r(content, data_dict))
             except UnicodeDecodeError:
-                status_note(['! error, failed to decode <', md_file, '>'], d=is_debug)
+                help.status_note(['! error, failed to decode <', md_file, '>'], d=is_debug)
                 return 'error'
             # save to list of extracted metadata:
-            data_dict['provenance'] = get_prov(path_file)
+            data_dict['provenance'] = help.get_prov(path_file)
             return data_dict
             # save or output results
             # todo: reenable that option:
             #if metafiles_all:
             #    output_extraction(data_dict, out_format, out_mode, path_file)
         except Exception as exc:
-            status_note('! error while extracting Rmd', d=is_debug)
+            help.status_note('! error while extracting Rmd', d=is_debug)
             return 'error'
 
 
@@ -185,5 +186,4 @@ def get_r_package_class(package):
             return label[:-1]
     except Exception as exc:
             raise
-            #status_note(['! error while classifying r package:', exc.problem_mark, exc.problem], d=True)
-
+            #help.status_note(['! error while classifying r package:', exc.problem_mark, exc.problem], d=True)

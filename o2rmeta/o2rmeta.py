@@ -14,11 +14,12 @@
     limitations under the License.
 
 """
-from .lib import metabroker
-from .lib import metaextract
-from .lib import metaharvest
-from .lib import metavalidate
-from .lib.helpers_funct.helpers import *
+from .lib import metaextract as metaextract
+from .lib import metabroker as metabroker
+from .lib import metavalidate as metavalidate
+from .lib import metaharvest as metaharvest
+from .lib.helpers_funct import helpers as help
+
 import argparse
 import sys
 
@@ -65,13 +66,13 @@ def main():
         # - - - - - - - - - - - - - - - - - -
         args = parser.parse_args()
         argsd = vars(args)
-        status_note(['received arguments: ', argsd], d=False)
+        help.status_note(['received arguments: ', argsd], d=False)
         if argsd['tool'] == "extract":
             if argsd['formats']:
                 metaextract.get_formats(dbg=argsd['debug'])
                 sys.exit(0)
             else:
-                status_note('launching extractor')
+                help.status_note('launching extractor')
                 metaextract.start(dbg=argsd['debug'],
                     i=argsd['inputdir'],
                     o=argsd['outputdir'],
@@ -84,16 +85,16 @@ def main():
                     xml=argsd['modexml'],
                     lic=argsd['default_metadata_license'])
         elif argsd['tool'] == "broker":
-            status_note('launching broker')
+            help.status_note('launching broker')
             metabroker.start(dbg=argsd['debug'], c=argsd['check'], m=argsd['map'], i=argsd['inputfile'], o=argsd['outputdir'], s=argsd['outputtostdout'])
         elif argsd['tool'] == "validate":
-            status_note('launching validator')
+            help.status_note('launching validator')
             metavalidate.start(s=argsd['schema'], c=argsd['candidate'])
         elif argsd['tool'] == "harvest":
-            status_note('launching harvester')
+            help.status_note('launching harvester')
             metaharvest.start(e=argsd['element'], q=argsd['query'])
     except Exception as exc:
         raise
 
-if __name__ == "__main__":
-   main()
+if __name__ == '__main__':
+    main()

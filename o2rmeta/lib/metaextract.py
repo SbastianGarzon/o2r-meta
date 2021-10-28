@@ -27,6 +27,7 @@ import dicttoxml
 
 from .helpers_funct import helpers as help
 from .helpers_funct.http_requests import *
+from geoextent.lib.helpfunctions import bbox_merge
 
 
 def best_candidate(all_candidates_dict):
@@ -156,12 +157,14 @@ def register_parsers(**kwargs):
     PARSERS_CLASS_LIST.append(ParseBagitTxt())
     from .parsers.parse_candidatefiles import ParseCandidateFiles
     PARSERS_CLASS_LIST.append(ParseCandidateFiles())
-    from .parsers.parse_geojson import ParseGeojson
-    PARSERS_CLASS_LIST.append(ParseGeojson())
+    #from .parsers.parse_geojson import ParseGeojson
+    #PARSERS_CLASS_LIST.append(ParseGeojson())
     from .parsers.parse_netcdf import ParseNetcdf
     PARSERS_CLASS_LIST.append(ParseNetcdf())
-    from .parsers.parse_ogc_shp import ParseGeopackage
-    PARSERS_CLASS_LIST.append(ParseGeopackage())
+    #from .parsers.parse_ogc_shp import ParseGeopackage
+    #PARSERS_CLASS_LIST.append(ParseGeopackage())
+    from .parsers.parse_spatialfile import ParseSpatialFile
+    PARSERS_CLASS_LIST.append(ParseSpatialFile)
     from .parsers.parse_rmd import ParseRmd
     PARSERS_CLASS_LIST.append(ParseRmd())
     from .parsers.parse_rdata import ParseRData
@@ -407,12 +410,13 @@ def start(**kwargs):
 
         # \ Add spatial from candidates:
         if 'spatial' in MASTER_MD_DICT:
-            if 'files' in MASTER_MD_DICT['spatial']:
-                coorlist = []
-                for key in MASTER_MD_DICT['spatial']['files']:
-                    if 'bbox' in key:
-                        coorlist.append(key['bbox'])
-                MASTER_MD_DICT['spatial']['union'] = {'bbox': help.calculate_geo_bbox_union(coorlist)}
+            if len(MASTER_MD_DICT['spatial']['files']) > 0:
+                geo = MASTER_MD_DICT['spatial']['files']
+                res = dict()
+                for sub in geo:
+                    res[sub.get("name")] = dict([("bbox", sub.get("bbox")), ("crs", sub.get("crs"))])
+                bbox = bbox_merge(res, input_dir)
+                MASTER_MD_DICT['spatial']['union'] = bbox.get("bbox")
 
         # \ Update identifier
         if MASTER_MD_DICT['identifier']['doi'] is not None:

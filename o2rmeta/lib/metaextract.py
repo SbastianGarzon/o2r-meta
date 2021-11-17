@@ -157,12 +157,8 @@ def register_parsers(**kwargs):
     PARSERS_CLASS_LIST.append(ParseBagitTxt())
     from .parsers.parse_candidatefiles import ParseCandidateFiles
     PARSERS_CLASS_LIST.append(ParseCandidateFiles())
-    #from .parsers.parse_geojson import ParseGeojson
-    #PARSERS_CLASS_LIST.append(ParseGeojson())
     from .parsers.parse_netcdf import ParseNetcdf
     PARSERS_CLASS_LIST.append(ParseNetcdf())
-    #from .parsers.parse_ogc_shp import ParseGeopackage
-    #PARSERS_CLASS_LIST.append(ParseGeopackage())
     from .parsers.parse_spatialfile import ParseSpatialFile
     PARSERS_CLASS_LIST.append(ParseSpatialFile)
     from .parsers.parse_rmd import ParseRmd

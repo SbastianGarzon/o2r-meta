@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Development &#8212; o2r-meta  documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Changelog" href="changelog.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/o2r-logo-only.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="install.html">
+  o2r-meta Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="howto/index_howto.html">
+  How-to Guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="changelog.html">
+  Changelog
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Development
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-new-parsers-to-the-extractor-tool">
+   Adding new parsers to the extractor tool
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-your-parser-python-class">
+   Structure of your parser Python class
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steps-to-integrate-your-own-parser">
+   Steps to integrate your own parser
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing">
+   Testing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation">
+   Documentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-documentation-locally">
+     Build documentation locally
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
+<p>Notes for developers of <code class="docutils literal notranslate"><span class="pre">o2r-meta</span></code>. The current development version is in the branch dev.</p>
+<section id="adding-new-parsers-to-the-extractor-tool">
+<h2>Adding new parsers to the extractor tool<a class="headerlink" href="#adding-new-parsers-to-the-extractor-tool" title="Permalink to this headline">¶</a></h2>
+<p>The extractor tool uses Python classes as parser modules. Each parser can process specific formats and the full list of supported file formats can be retrieved via CLI (see above).</p>
+<p>In order to add a new custom parser, you have to write a parser class and add it to the parser directory.</p>
+<p>Note that future versions of o2r-meta (<a class="reference external" href="https://github.com/o2r-project/o2r-meta/pull/95">#95</a>) might be able to register all parsers based on the files in the parsers directory. Until then it is necessary to register a new parser in the extractor script</p>
+<p>The use of classes as parsers is currently implemented in a rather naïve way. However, in order to be able to take advantage of non static methods, all parsers are designed as classes already.</p>
+<p>The general process of parsing is the following:</p>
+<p>#.the parser accesses a target file, which was encountered by the extractor during a recursive scan of the target directory and identified based on the file extension.
+#.the target file is read and processed by a specific parser
+#.the results of the processing are written to a dictionary data structure that is globally known to the program; the structure of the data dictionary is implicitly defined in <code class="docutils literal notranslate"><span class="pre">metaextract.py</span></code> and can be seen in <code class="docutils literal notranslate"><span class="pre">dummy.json</span></code></p>
+</section>
+<section id="structure-of-your-parser-python-class">
+<h2>Structure of your parser Python class<a class="headerlink" href="#structure-of-your-parser-python-class" title="Permalink to this headline">¶</a></h2>
+<p>In this example we will call your new parser file <code class="docutils literal notranslate"><span class="pre">parse_abc.py</span></code> and the class in that file <code class="docutils literal notranslate"><span class="pre">ParseAbc</span></code>.</p>
+<p>Here is a commented template for your parser file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Class name keyword to signal availability to importing files</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ParseAbc&#39;</span><span class="p">]</span>
+
+<span class="c1"># Optionally import the o2r-meta helping functions if want to have access to them</span>
+<span class="kn">from</span> <span class="nn">helpers.helpers</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Import further external modules you would need and also add them to the requirements.txt file!</span>
+<span class="kn">import</span> <span class="nn">myABC</span>
+
+<span class="c1"># If (some of) the formats you want to parse depend on a successful import of external modules, which might be missing, use the following structure to support as much formats as possible</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">myABC</span> <span class="kn">import</span> <span class="o">*</span>
+    <span class="n">FORMATS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.abc&#39;</span><span class="p">]</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">iexc</span><span class="p">:</span>
+    <span class="n">FORMATS</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">availability_issues</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">iexc</span><span class="p">)</span>
+
+<span class="c1"># The identifying name of your parser</span>
+<span class="n">ID</span> <span class="o">=</span> <span class="s1">&#39;o2r meta abc parser&#39;</span>
+
+<span class="c1"># Declare your class</span>
+<span class="k">class</span> <span class="nc">ParseAbc</span><span class="p">:</span>
+    <span class="c1"># Required method to return the ID</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">():</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span>
+
+    <span class="c1"># Required method to return the available formats of this parser</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_formats</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">FORMATS</span><span class="p">:</span>
+            <span class="c1"># Status notes are available via the helpers module</span>
+            <span class="n">status_note</span><span class="p">([</span><span class="vm">__class__</span><span class="p">,</span> <span class="s1">&#39; unavailable (&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">availability_issues</span><span class="p">),</span> <span class="s1">&#39;)&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">FORMATS</span>
+
+    <span class="c1"># Required method. This is the place for your actual parsing code</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">is_debug</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># The extractor provides the path of your target file</span>
+            <span class="n">path_file</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="c1"># And the metadata dictionary to which you want to write</span>
+            <span class="n">MASTER_MD_DICT</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">is_debug</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;is_debug&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="c1"># Fictional example to add parsed data</span>
+            <span class="n">my_parsed_data</span> <span class="o">=</span> <span class="n">myABC</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">path_file</span><span class="p">)</span>
+            <span class="n">my_return</span> <span class="o">=</span> <span class="p">{</span><span class="n">path_file</span><span class="p">:</span> <span class="p">{}}</span>
+            <span class="n">my_return</span><span class="p">[</span><span class="n">path_file</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">my_parsed_data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;ABC&#39;</span> <span class="ow">in</span> <span class="n">MASTER_MD_DICT</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;abc_files&#39;</span> <span class="ow">in</span> <span class="n">MASTER_MD_DICT</span><span class="p">[</span><span class="s1">&#39;ABC&#39;</span><span class="p">]:</span>
+                    <span class="n">MASTER_MD_DICT</span><span class="p">[</span><span class="s1">&#39;ABC&#39;</span><span class="p">][</span><span class="s1">&#39;abc_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">my_return</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">MASTER_MD_DICT</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="n">status_note</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">),</span> <span class="n">d</span><span class="o">=</span><span class="n">is_debug</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s1">&#39;error&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="steps-to-integrate-your-own-parser">
+<h2>Steps to integrate your own parser<a class="headerlink" href="#steps-to-integrate-your-own-parser" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>save a copy of your parser file parse_abc.py at o2r-metaparsers</p></li>
+<li><p>open <code class="docutils literal notranslate"><span class="pre">o2r-meta\extract\metaextract.py</span></code> and find the function <code class="docutils literal notranslate"><span class="pre">register_parsers</span></code></p></li>
+<li><p>add the following to that function using your own filename and class name:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># From your file import your class</span>
+<span class="kn">from</span> <span class="nn">parsers.parse_abc.py</span> <span class="kn">import</span> <span class="n">ParseAbc</span>
+<span class="c1"># To global list of parsers add an instance of your class</span>
+<span class="n">PARSERS_CLASS_LIST</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ParseAbc</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Either install the lib and run <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, or run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pytest</span></code>.
+You can also run individual files:</p>
+<ol class="arabic simple">
+<li><p>test if the extractor recognizes your new parser by calling</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">o2rmeta</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">debug</span> <span class="n">extract</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+</div>
+<p>That’s it, well done! Now make a pull request and add your parser to o2r-meta, if you want to.</p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Tests are implemented using <a class="reference external" href="https://docs.pytest.org/en/6.2.x/">pytest</a> following its <a class="reference external" href="https://docs.pytest.org/en/latest/explanation/goodpractices.html#test-discovery">conventions for test discovery</a>. The configuration file is <code class="docutils literal notranslate"><span class="pre">pytest.ini.</span></code></p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The documentation is based on <a href="#id1"><span class="problematic" id="id2">Sphinx_</span></a>.
+The source files can be found in the directory <code class="docutils literal notranslate"><span class="pre">docs/</span></code></p>
+<section id="build-documentation-locally">
+<h3>Build documentation locally<a class="headerlink" href="#build-documentation-locally" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">docs</span><span class="o">/</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">-</span><span class="n">docs</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="changelog.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Changelog</p>
+        </div>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, o2r-project.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
